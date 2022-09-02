@@ -26,5 +26,5 @@ $ yaml2json <<< 'okay = "ok"' | jq
 Convert YAML from a file and pretty-print it without `jq`:
 
 ```bash
-$ yaml2json --pretty ~/.cargo/.crates.toml
+$ yaml2json --pretty ./demo.yaml
 ```

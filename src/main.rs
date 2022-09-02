@@ -34,8 +34,13 @@ fn main() -> Result<()> {
             .with_context(|| format!("failed to collect from input: {}", input))?,
     };
 
-    let value = serde_yaml::from_str::<serde_json::Value>(&input_buf)
-        .with_context(|| format!("parsing YAML from {} failed", input_src))?;
+    let value = if input_src.ends_with(".toml") {
+        toml::from_str::<serde_json::Value>(&input_buf)
+            .with_context(|| format!("parsing TOML from {} failed", input_src))?
+    } else {
+        serde_yaml::from_str::<serde_json::Value>(&input_buf)
+            .with_context(|| format!("parsing YAML from {} failed", input_src))?
+    };
 
     if matches.is_present("pretty") {
         serde_json::to_writer_pretty(io::stdout(), &value)
