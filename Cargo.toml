@@ -1,8 +1,24 @@
 [package]
 name = "yaml2json"
-version = "0.1.0"
+version = "0.1.2"
 edition = "2021"
+description = "Convert YAML to JSON"
+license = "MIT"
+authors = ["William Woodruff <william@yossarian.net>"]
+homepage = "https://github.com/dafu-wu/yaml2json"
+readme = "README.md"
+keywords = ["cli", "yaml", "json"]
+categories = ["command-line-utilities", "development-tools", "encoding"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package.metadata.release]
+dev-version = false
+publish = false # handled by GitHub Actions
 
 [dependencies]
+serde_yaml = "0.8.21"
+anyhow = "1.0"
+clap = "3.2.19"
+serde = { version = "1.0", features = ["derive"]}
+serde_json = "1.0"
+
